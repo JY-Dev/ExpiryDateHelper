@@ -1,4 +1,4 @@
-package com.jydev.expirydatehelper.room
+package com.jydev.expirydatehelper.room.foodData
 
 import android.content.Context
 import androidx.room.Database
@@ -12,9 +12,10 @@ abstract class FoodDataDB :RoomDatabase(){
         private var INSTANCE : FoodDataDB? = null
 
         fun getInstance(context: Context) : FoodDataDB?{
-            if(INSTANCE==null){
+            if(INSTANCE ==null){
                 synchronized(FoodDataDB::class){
-                    INSTANCE = Room.databaseBuilder(context,FoodDataDB::class.java,"fooddata.db").build()
+                    INSTANCE = Room.databaseBuilder(context,
+                        FoodDataDB::class.java,"fooddata.db").build()
                 }
             }
             return INSTANCE

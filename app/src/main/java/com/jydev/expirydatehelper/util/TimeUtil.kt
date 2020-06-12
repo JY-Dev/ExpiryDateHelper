@@ -52,7 +52,7 @@ fun calClearTime(mils: Long): Calendar {
 
 }
 
-private fun detailedTime(mils:Long):Long{
+fun detailedTime(mils:Long):Long{
     return mils.toString().replaceRange(mils.toString().length-3,mils.toString().length,"0").toLong()
 }
 

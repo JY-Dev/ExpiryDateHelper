@@ -1,4 +1,4 @@
-package com.jydev.expirydatehelper.room
+package com.jydev.expirydatehelper.room.foodData
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
