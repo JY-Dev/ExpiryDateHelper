@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_list">
+        <item>전체</item>
+        <item>보관상태</item>
+        <item>유통기한 임박</item>
+        <item>유통기한 초과</item>
+    </string-array>
+
+    <string-array name="keep_way_list">
+        <item>냉장</item>
+        <item>냉동</item>
+        <item>상온</item>
+    </string-array>
+    <array name="keep_way_img_list">
+        <item>@drawable/temperature</item>
+        <item>@drawable/refrigerator</item>
+        <item>@drawable/ice</item>
+    </array>
+</resources>
