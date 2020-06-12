@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.jydev.expirydatehelper.R
 import com.jydev.expirydatehelper.adapter.MainAdapter
-import com.jydev.expirydatehelper.data.FoodData
 import com.jydev.expirydatehelper.dialog.ItemSelDialog
-import com.jydev.expirydatehelper.room.FoodDataRoom
+import com.jydev.expirydatehelper.room.foodData.FoodDataRoom
 import com.jydev.expirydatehelper.util.DataProcess
 import com.jydev.expirydatehelper.util.checkEnpiryDate
 

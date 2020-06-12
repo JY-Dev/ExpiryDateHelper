@@ -11,13 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.jydev.expirydatehelper.R
-import com.jydev.expirydatehelper.room.FoodDataRoom
+import com.jydev.expirydatehelper.room.foodData.FoodDataRoom
 import com.jydev.expirydatehelper.util.DataProcess
 import com.jydev.expirydatehelper.util.checkEnpiryDate
 import com.jydev.expirydatehelper.util.dateFormat1
 import com.jydev.expirydatehelper.util.getEnpiryDay
 
-class MainAdapter(context: Context, foodDataArray: List<FoodDataRoom>,page: Int) : BaseAdapter() {
+class MainAdapter(context: Context, foodDataArray: List<FoodDataRoom>, page: Int) : BaseAdapter() {
     private var mFoodDataArray = foodDataArray
     private val mContext = context
     private val mKeepWayImg = context.resources.obtainTypedArray(R.array.keep_way_img_list)
