@@ -9,6 +9,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
             <Button
+                android:id="@+id/drawer_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="gone"/>
+
+            <Button
                 android:id="@+id/back_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

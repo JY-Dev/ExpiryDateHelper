@@ -2,7 +2,9 @@
 <resources>
     <string-array name="tab_list">
         <item>전체</item>
-        <item>보관상태</item>
+        <item>냉동</item>
+        <item>냉장</item>
+        <item>상온</item>
         <item>유통기한 임박</item>
         <item>유통기한 초과</item>
     </string-array>

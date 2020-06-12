@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.jydev.expirydatehelper.R
 import com.jydev.expirydatehelper.adapter.MainPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_tool_bar.*
 
 class MainActivity : BaseActivity() {
     private lateinit var tabList : Array<String>
@@ -23,9 +24,14 @@ class MainActivity : BaseActivity() {
 
    private fun init(){
        tabList = resources.getStringArray(R.array.tab_list)
+       back_btn.visibility = View.GONE
+       drawer_btn.visibility = View.GONE
+
        tabListSet()
         add_btn.setOnClickListener {
-            startActivity(Intent(this,FoodDataRegisterActivity01::class.java))
+            val intent = Intent(this,FoodDataRegisterActivity01::class.java)
+            intent.putExtra("whereFrom","등록")
+            startActivity(intent)
         }
 
     }
@@ -34,7 +40,7 @@ class MainActivity : BaseActivity() {
         tabList.forEach {
             tab_layout.addTab(tab_layout.newTab().setCustomView(createTabView(it)))
         }
-        tabPagerAdpater = MainPagerAdapter(supportFragmentManager,tab_layout.tabCount)
+        tabPagerAdpater = MainPagerAdapter(this,supportFragmentManager,tab_layout.tabCount)
         main_pager.adapter = tabPagerAdpater
         main_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

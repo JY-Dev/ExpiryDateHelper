@@ -5,7 +5,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Window
+import android.widget.Toast
 import com.jydev.expirydatehelper.R
+import com.jydev.expirydatehelper.util.calClearTime
+import com.jydev.expirydatehelper.util.dateFormat1
 import kotlinx.android.synthetic.main.datepicker_dialog.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,8 +52,12 @@ class DatePickerDialog(context: Context,mils:Long?, onCallbackListner : (mils:Lo
         }
 
         btn_confirm.setOnClickListener {
-            onCallbackListner(cal.timeInMillis,dateFormat1(cal))
-            this.dismiss()
+            if(calClearTime(cal.timeInMillis).timeInMillis>=calClearTime(System.currentTimeMillis()).timeInMillis){
+                onCallbackListner(cal.timeInMillis,dateFormat1(cal))
+                this.dismiss()
+            }
+            else Toast.makeText(context,"당일 또는 당일 이후의 날짜를 정해주세요",Toast.LENGTH_SHORT).show()
+
         }
 
         this.show()
@@ -68,9 +75,5 @@ class DatePickerDialog(context: Context,mils:Long?, onCallbackListner : (mils:Lo
         picker_day.value = currentDay
     }
 
-    //yyyy년 MM월 dd일
-    fun dateFormat1(cal : Calendar) : String{
-        val dateFormat = SimpleDateFormat("yyyy년 M월 d일") //날짜포맷
-        return dateFormat.format(cal.time)
-    }
+
 }

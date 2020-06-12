@@ -11,6 +11,17 @@
         android:id="@+id/app_toolbar"
         layout="@layout/app_tool_bar" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="#ede7f6"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="scrollable"
+        android:background="#9575cd"
+        app:tabGravity="fill"/>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,15 +45,7 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabIndicatorColor="#ede7f6"
-        app:tabIndicatorHeight="3dp"
-        app:tabMode="fixed"
-        android:background="@color/colorPrimary"
-        app:tabGravity="fill"/>
+
 
     <LinearLayout
         android:id="@+id/banner"

@@ -39,9 +39,11 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/food_img"
                 android:layout_width="250dp"
                 android:layout_height="166dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 android:background="@drawable/food"/>
 
             <LinearLayout
@@ -55,7 +57,7 @@
                     android:id="@+id/photo_add_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
-                    android:text="사진촬영"/>
+                    android:text="사진촬영" />
 
                 <Button
                     android:id="@+id/photo_del_btn"
@@ -104,8 +106,8 @@
         android:id="@+id/complete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
         android:text="완료" />
 
     <LinearLayout
