@@ -39,7 +39,39 @@ class FoodDataRegisterActivity01 : BaseActivity() {
         toolbar_title.text = "식자재 등록"
         whereFrom = intent.extras!!.getString("whereFrom","")
         primaryKey = intent.extras!!.getInt("primaryKey",0)
+
         if (whereFrom=="수정") modifySetting()
+
+        setSpinner()
+
+        enpiry_date.setOnClickListener {
+            DatePickerDialog(this,enpiryTimeMil){timeMils,date ->
+                enpiryTimeMil = timeMils
+                enpiry_date_tv.text = date
+                checkBoxSetEnable(alarmEnableCheck(timeMils))
+            }
+        }
+
+        next_btn.setOnClickListener {
+            if(food_name_tv.text.isNotEmpty()&&enpiry_date_tv.text.isNotEmpty()){
+                val intent = Intent(this,FoodDataRegisterActivity02::class.java)
+                intent.putExtra("foodName",food_name_tv.text.toString())
+                intent.putExtra("keepWay",keepWay)
+                intent.putExtra("enpiryDate",enpiryTimeMil)
+                val alarmCheckArray = mutableListOf(alarm_check01.isChecked,alarm_check02.isChecked,alarm_check03.isChecked)
+                intent.putExtra("alarmCheck",alarmCheckArray.toBooleanArray())
+                intent.putExtra("whereFrom",whereFrom)
+                intent.putExtra("primaryKey",primaryKey)
+                startActivity(intent)
+            } else Toast.makeText(this,"모든 항목을 입력해주세요.",Toast.LENGTH_SHORT).show()
+        }
+
+        back_btn.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setSpinner(){
         keepWayList = resources.getStringArray(R.array.keep_way_list)
         spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,keepWayList)
         keep_way_spinner.adapter = spinnerAdapter
@@ -64,29 +96,6 @@ class FoodDataRegisterActivity01 : BaseActivity() {
 
             }
 
-        }
-        enpiry_date.setOnClickListener {
-            DatePickerDialog(this,enpiryTimeMil){timeMils,date ->
-                enpiryTimeMil = timeMils
-                enpiry_date_tv.text = date
-                checkBoxSetEnable(alarmEnableCheck(timeMils))
-            }
-        }
-        next_btn.setOnClickListener {
-            if(food_name_tv.text.isNotEmpty()&&enpiry_date_tv.text.isNotEmpty()){
-                val intent = Intent(this,FoodDataRegisterActivity02::class.java)
-                intent.putExtra("foodName",food_name_tv.text.toString())
-                intent.putExtra("keepWay",keepWay)
-                intent.putExtra("enpiryDate",enpiryTimeMil)
-                val alarmCheckArray = mutableListOf(alarm_check01.isChecked,alarm_check02.isChecked,alarm_check03.isChecked)
-                intent.putExtra("alarmCheck",alarmCheckArray.toBooleanArray())
-                intent.putExtra("whereFrom",whereFrom)
-                intent.putExtra("primaryKey",primaryKey)
-                startActivity(intent)
-            } else Toast.makeText(this,"모든 항목을 입력해주세요.",Toast.LENGTH_SHORT).show()
-        }
-        back_btn.setOnClickListener {
-            finish()
         }
     }
 

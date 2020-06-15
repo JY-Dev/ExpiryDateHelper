@@ -26,7 +26,7 @@ class FoodDataRegisterActivity02 : BaseActivity() {
     private lateinit var alarmArray :BooleanArray
     private var foodName = ""
     private var keepWay = ""
-        private var enpiryDate = 0L
+    private var enpiryDate = 0L
     private var whereFrom = ""
     private var primaryKey = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +43,13 @@ class FoodDataRegisterActivity02 : BaseActivity() {
         whereFrom = intent.extras!!.getString("whereFrom","")
         primaryKey = intent.extras!!.getInt("primaryKey",0)
         if(whereFrom=="수정") modifySetting()
-            intent.extras!!.getBooleanArray("alarmCheck")!!.let {
+
+        intent.extras!!.getBooleanArray("alarmCheck")!!.let {
                 alarmArray = it
-            }
-            keepWay = intent.extras!!.getString("keepWay","")
-            enpiryDate = intent.extras!!.getLong("enpiryDate",0L)
-            foodName = intent.extras!!.getString("foodName","")
+        }
+        keepWay = intent.extras!!.getString("keepWay","")
+        enpiryDate = intent.extras!!.getLong("enpiryDate",0L)
+        foodName = intent.extras!!.getString("foodName","")
 
         back_btn.setOnClickListener {
             finish()
@@ -58,6 +59,7 @@ class FoodDataRegisterActivity02 : BaseActivity() {
         photo_add_btn.setOnClickListener {
             tedPermission(this)
         }
+
         photo_del_btn.setOnClickListener {
             cameraUtil.clearImageUri()
             food_img.setImageDrawable(resources.getDrawable(R.drawable.food,applicationContext.theme))
@@ -65,25 +67,20 @@ class FoodDataRegisterActivity02 : BaseActivity() {
         complete_btn.setOnClickListener {
             val preferenceManager = PreferenceManager()
             if(whereFrom!="수정"){
-                foodData = FoodData(foodName,keepWay,System.currentTimeMillis(),enpiryDate,
-                    AlarmCheck(alarmArray[0],alarmArray[1],alarmArray[2]),cameraUtil.getImageUri().toString(),memo_tv.text.toString()
-                    ,preferenceManager.getInt(this,"primaryKey")
-                )
-
-                preferenceManager.setInt(this,"primaryKey",preferenceManager.getInt(this,"primaryKey")+1)
-            } else {
-                foodData = FoodData(foodName,keepWay,System.currentTimeMillis(),enpiryDate,
-                    AlarmCheck(alarmArray[0],alarmArray[1],alarmArray[2]),cameraUtil.getImageUri().toString(),memo_tv.text.toString()
-                    ,primaryKey
-                )
+                primaryKey = preferenceManager.getInt(this,"primaryKey")
+                preferenceManager.setInt(this,"primaryKey",primaryKey+1)
             }
-
+            foodData = FoodData(foodName,keepWay,System.currentTimeMillis(),enpiryDate,
+                AlarmCheck(alarmArray[0],alarmArray[1],alarmArray[2]),cameraUtil.getImageUri().toString(),memo_tv.text.toString()
+                ,primaryKey
+            )
+            DataProcess().insertData(this,foodData.primaryKey,foodData)
             val intent = Intent(this,MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-                DataProcess().insertData(this,foodData.primaryKey,foodData)
-                startActivity(intent)
-                finish()
+
+            startActivity(intent)
+            finish()
 
 
 
